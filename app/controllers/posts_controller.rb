@@ -17,7 +17,8 @@ class PostsController < ApplicationController
     if user_signed_in?
       @post = Post.new
     else
-      flash: {warning: "You must be logged in to complete this action"}
+      redirect_to new_user_path, flash: {warning: "You must be logged in to complete this action"}
+    end
   end
 
   # GET /posts/1/edit
@@ -27,16 +28,20 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    if user_signed_in?
+      @post = Post.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @post.save
+          format.html { redirect_to @post, notice: 'Post was successfully created.' }
+          format.json { render :show, status: :created, location: @post }
+        else
+          format.html { render :new }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to new_user_path, flash: {warning: "You must be logged in to complete this action"}
     end
   end
 
