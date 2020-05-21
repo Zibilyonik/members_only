@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order("created at DESC")
     @post = Post.new
   end
 
@@ -15,8 +16,9 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    before_action :authenticate_user!
+    if user_signed_in?
       @post = Post.new
+    end
   end
 
   # GET /posts/1/edit
