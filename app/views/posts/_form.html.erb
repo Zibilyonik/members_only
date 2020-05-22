@@ -1,9 +1,11 @@
-<%= simple_form_for(@post) do |f| %>
-<%= f.error_notification %>
-<div class="field">
-  <div class="control is-offset-one-quarter is-half">
-    <%= f.input :post, label: "What is your secret?", input_html: { class: "textarea" }, label_html: { class: "label" }, placeholder: "Spill your beans" %>
+<div class="section">
+<%= simple_form_for @post do |f| %>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :post,label: "What is your Secret?", placeholder: "Spill Your Beans", input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' }  %>
+    </div>
   </div>
-</div>
-<%= f.button :submit, class: "button" %>
+  <%= f.button :submit, 'Create new post', class: "button is-primary" %>
 <% end %>
+</div>
