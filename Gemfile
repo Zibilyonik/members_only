@@ -46,7 +46,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'guard', '~> 2.16', '>= 2.16.2'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require:false
-  gem 'better_errors', '~> 2.7', '>= 2.7.1'
+  gem 'better_errors', '~> 2.8'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'simple_form', '~> 5.0', '>= 5.0.2'
 
